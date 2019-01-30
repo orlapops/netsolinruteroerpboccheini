@@ -1,6 +1,8 @@
 {
   "name": "netsolinappruterpbocche",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "4771304e"
 }
