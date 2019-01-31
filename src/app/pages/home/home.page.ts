@@ -365,15 +365,18 @@ export class HomePage implements OnInit {
     action.present();
   }
   colorxEstado(estado) {
-    console.log('colorxEstado, estado');
+    // console.log('colorxEstado, estado');
     if (estado === 'C') {
-      return 'bg-red';
+      return 'colorviscerrada';
+      // return 'bg-red';
     } else {
       if (estado === 'A') {
-        console.log('retorna bg-verde');
-        return 'bg-verde';
+        return 'colorvisabierta';
+        // console.log('retorna bg-verde');
+        // return 'bg-verde';
       } else {
-        return 'bg-white';
+        return 'colorvispend';
+        // return 'bg-white';
     }
   }
   }

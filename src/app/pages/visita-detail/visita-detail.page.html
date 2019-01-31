@@ -1,4 +1,5 @@
 <ion-header *ngIf="cargoVisitaActual && _visitas.cargo_clienteact">
+
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
@@ -33,30 +34,34 @@
 <ion-content class="animated fadeIn" *ngIf="cargoVisitaActual && cargo_clienteact">
     <!-- <ion-slides pager="true" class="margin-bottom">
         <ion-slide *ngFor="let image of visita.images" (click)="presentImage(image)">
-            <img [src]="image">
-            <div class="shadow"></div>
+        <img [src]="image">
+        <div class="shadow"></div>
         </ion-slide>
-    </ion-slides> -->
+        </ion-slides> -->
     <div padding-horizontal *ngIf="cargo_clienteact" class="ion-padding">
-
-        <ion-segment [(ngModel)]="visitaSegment" class="background-tolbar">
-            <ion-segment-button value="details" class="btdetalles-color text-color">
-                Detalles
+        <!-- class="background-tolbar" -->
+        <ion-segment [(ngModel)]="visitaSegment" class="segmentabs">
+            <!-- class="btdetalles-color text-color" -->
+            <ion-segment-button size="small" class="buttonult" value="details" checked>
+                <ion-label>Detalle</ion-label>
             </ion-segment-button>
-            <ion-segment-button *ngIf="_parEmpre.usuario.recauda" value="actividades" class="btactividades-color text-color">
-                Actividades
+            <!-- class="btactividades-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="actividades">
+                <ion-label>Actividades</ion-label>
             </ion-segment-button>
-            <ion-segment-button *ngIf="_parEmpre.usuario.recauda" value="cartera" class="btcartera-color text-color">
-                Cartera
+            <!-- class="btcartera-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
+                <ion-label>Cartera</ion-label>
             </ion-segment-button>
-            <ion-segment-button *ngIf="_parEmpre.usuario.cap_factura" value="facturar" class="btfacturar-color text-color">
-                Facturar
+            <!-- class="btfacturar-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
+                <ion-label>Factura</ion-label>
             </ion-segment-button>
-            <ion-segment-button *ngIf="_parEmpre.usuario.cap_pedido" value="pedido" class="btpedido-color text-color">
-                Pedido
+            <!-- class="btpedido-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
+                <ion-label>Pedidos</ion-label>
             </ion-segment-button>
         </ion-segment>
-
         <div [ngSwitch]="visitaSegment">
             <div *ngSwitchCase="'details'" class="bg-white detalles-padding">
                 <ion-card no-margin margin-top margin-bottom class="animated fadeIn margin-bottom margin-top">
@@ -121,7 +126,7 @@
                             <h2 [ngClass]="{'fw700 text-red': true}">
                                 <div *ngIf="visitaAct.estado == 'A' || visitaAct.estado == 'C'">
                                     <!-- <ion-icon name="calendar" slot="start" color="secondary" *ngIf="true"></ion-icon>
-                                    <ion-icon name="mail-open" slot="start" color="primary" *ngIf="!true"></ion-icon> -->
+        <ion-icon name="mail-open" slot="start" color="primary" *ngIf="!true"></ion-icon> -->
                                     Ingreso:
                                     <ion-text color="primary">{{ visitaAct.fechahora_ingreso | date: 'short'}}</ion-text>
                                 </div>
@@ -181,12 +186,12 @@
                                         <ion-col size="12">
                                             <ion-card class="actividadesCard">
                                                 <ion-img [src]="foto.link_foto"></ion-img>
-                                                <!-- 
-                                                <ion-card-subtitle>
-                                                    <ion-badge color="danger" (click)="eliminarFoto(foto)">
-                                                        <ion-icon size="small" name="trash" class="trash_icon"></ion-icon>
-                                                    </ion-badge>
-                                                </ion-card-subtitle> -->
+                                                <!--
+        <ion-card-subtitle>
+        <ion-badge color="danger" (click)="eliminarFoto(foto)">
+        <ion-icon size="small" name="trash" class="trash_icon"></ion-icon>
+        </ion-badge>
+        </ion-card-subtitle> -->
                                             </ion-card>
                                         </ion-col>
                                     </ion-row>
@@ -253,21 +258,21 @@
 
                     <ion-card *ngIf="_parEmpre.usuario.recauda" class="facturaCard">
                         <!-- <ion-card-content>
-                            <ion-card no-margin margin-vertical class="bg-white" *ngFor="let item of clienteAct.cartera">
-                                <ion-item>
-                                    <p>
-                                        Obligación: {{item.num_obliga}} {{item.fecha_obl | date: 'shortDate'}}
-                                        <br>
-                                        <ion-badge *ngIf="item.dias_venci>0" slot="start" color="danger" margin-bottom>{{ item.dias_venci }} días de vencida</ion-badge>
-                                        Saldo: {{item.saldo | currency }}
-                                    </p>
-                                </ion-item>
-                                <ion-button size="small" shape="round" expand="full" color="warning" routerLink="/recibo-detail/{{item.num_obliga}}">
-                                    <ion-icon slot="start" name="book"></ion-icon>
-                                    Detalle Obligacoón
-                                </ion-button>
-                            </ion-card>
-                        </ion-card-content> -->
+        <ion-card no-margin margin-vertical class="bg-white" *ngFor="let item of clienteAct.cartera">
+        <ion-item>
+        <p>
+        Obligación: {{item.num_obliga}} {{item.fecha_obl | date: 'shortDate'}}
+        <br>
+        <ion-badge *ngIf="item.dias_venci>0" slot="start" color="danger" margin-bottom>{{ item.dias_venci }} días de vencida</ion-badge>
+        Saldo: {{item.saldo | currency }}
+        </p>
+        </ion-item>
+        <ion-button size="small" shape="round" expand="full" color="warning" routerLink="/recibo-detail/{{item.num_obliga}}">
+        <ion-icon slot="start" name="book"></ion-icon>
+        Detalle Obligacoón
+        </ion-button>
+        </ion-card>
+        </ion-card-content> -->
                         <ion-card-content no-margin margin-vertical class="bg-white" *ngFor="let item of clienteAct.cartera">
                             <ion-grid>
                                 <ion-row>
@@ -398,20 +403,20 @@
             <div>
                 <ion-toolbar color="primary">
                     <ion-buttons slot="secondary">
-                        <ion-button fill="solid" color="tertiary" routerLink="/ultpedido">
+                        <ion-button size="small" class="buttonult" fill="solid" color="tertiary" routerLink="/ultpedido">
                             <ion-icon slot="start" name="cart"></ion-icon>
                             U.Pedidos
                         </ion-button>
-                    </ion-buttons>
-                    <ion-buttons slot="primary">
-                        <ion-button fill="solid" color="tertiary" routerLink="/ultfactura">
-                            U.Facturas
+                        <!-- </ion-buttons> -->
+                        <!-- <ion-buttons slot="primary"> -->
+                        <ion-button class="buttonult" fill="solid" color="tertiary" routerLink="/ultfactura">
+                            U.Factur.
                             <ion-icon slot="start" name="paper"></ion-icon>
                         </ion-button>
-                    </ion-buttons>
-                    <ion-buttons slot="primary">
-                        <ion-button fill="solid" color="tertiary" routerLink="/ultrecibo">
-                            U.Recibos
+                        <!-- </ion-buttons> -->
+                        <!-- <ion-buttons slot="primary"> -->
+                        <ion-button class="buttonult" fill="solid" color="tertiary" routerLink="/ultrecibo">
+                            U.Recib.
                             <ion-icon slot="start" name="cash"></ion-icon>
                         </ion-button>
                     </ion-buttons>
@@ -423,22 +428,22 @@
 
 <!-- <ion-toolbar color="primary">
         <ion-tabs>
-            <ion-tab-bar slot="bottom">
-
-                <ion-tab-button href="/ultfactura">
-                    <ion-label>Ult. Facturas</ion-label>
-                    <ion-icon name="paper"></ion-icon>
-                </ion-tab-button>
-
-                <ion-tab-button tab="/ultpedido">
-                    <ion-label>Ult. Pedidos</ion-label>
-                    <ion-icon name="cart"></ion-icon>
-                </ion-tab-button>
-
-                <ion-tab-button tab="ultrecibo">
-                    <ion-label>Ult. Recibos</ion-label>
-                    <ion-icon name="cash"></ion-icon>
-                </ion-tab-button>
-            </ion-tab-bar>
+        <ion-tab-bar slot="bottom">
+        
+        <ion-tab-button href="/ultfactura">
+        <ion-label>Ult. Facturas</ion-label>
+        <ion-icon name="paper"></ion-icon>
+        </ion-tab-button>
+        
+        <ion-tab-button tab="/ultpedido">
+        <ion-label>Ult. Pedidos</ion-label>
+        <ion-icon name="cart"></ion-icon>
+        </ion-tab-button>
+        
+        <ion-tab-button tab="ultrecibo">
+        <ion-label>Ult. Recibos</ion-label>
+        <ion-icon name="cash"></ion-icon>
+        </ion-tab-button>
+        </ion-tab-bar>
         </ion-tabs>
-    </ion-toolbar> -->
+        </ion-toolbar> -->

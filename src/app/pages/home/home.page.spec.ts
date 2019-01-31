@@ -14,7 +14,6 @@ describe('HomePage', () => {
     })
       .compileComponents();
   }));
-
   
   beforeEach(() => {
     fixture = TestBed.createComponent(HomePage);

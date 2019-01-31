@@ -16,7 +16,7 @@
                 <ion-icon name="mail"></ion-icon>
             </ion-button>
             <!-- <ion-button icon-left size="small" shape="round" color="tertiary" (click)="editprofile()">
-                <ion-icon name="contact"></ion-icon>
+            <ion-icon name="contact"></ion-icon>
             </ion-button> -->
         </ion-buttons>
     </ion-toolbar>
@@ -188,7 +188,7 @@
                 <!-- <ion-item color="dark" tappable routerLink="/hotel-detail/{{visita.id}}" *ngFor="let visita of visitas | slice:4:8; let i = index"> -->
                 <ion-item tappable routerLink="/visita-detail/{{visita.id}}" *ngFor="let visita of _visitas.visitas_pendientes" [ngClass]="colorxEstado(visita.data.estado)">
                     <ion-label>
-                        <h2 [ngClass]="{'fw700 text-white': !true}">
+                        <h2 [ngClass]="{'fw700 text-white': true}">
                             <div class="fechavisita">
                                 <ion-icon name="calendar" slot="start" color="secondary" *ngIf="true"></ion-icon>
                                 <ion-icon name="mail-open" slot="start" color="primary" *ngIf="!true"></ion-icon>
@@ -201,15 +201,18 @@
                             </div>
                             <!-- <ion-text color="primary">Mensaje</ion-text> -->
                         </h2>
-                        <hr>
+                        <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
+                        <hr *ngIf="visita.data.estado === 'C'" class="hrvisitacerrada">
+                        <hr *ngIf="visita.data.estado != 'A' && visita.data.estado != 'C'" class="hrvisitanoabierta">
                         <h2 class="clientevisita">
-                            <ion-text color="dark"> {{visita.data.nombre}}</ion-text>
+                            <ion-text color="dark">{{visita.data.nombre}}</ion-text>
                         </h2>
                         <h3>
+
                             <div class="direcvisita">
-                                <ion-icon name="pin" slot="start" class="direcvisita"></ion-icon>
+                                <ion-icon name="pin" slot="start" color="tertiary" class="direcvisita"></ion-icon>
                                 <!-- <p [ngClass]="{'text-light': !true}"> -->
-                                <ion-text color="dark"> {{visita.data.direccion}} {{visita.data.cod_tercer}} </ion-text>
+                                <ion-text color="dark"> {{visita.data.direccion}} Id:{{visita.data.cod_tercer}} </ion-text>
                                 <!-- </p> -->
                             </div>
                         </h3>
@@ -231,11 +234,12 @@
                 <ion-icon size="small" color="dark" name="bookmark"></ion-icon> Visitas Cumplidas</h3>
         </ion-text>
         <ion-card>
-            <ion-list class="listmdnetsolin">
+            <ion-list>
                 <!-- <ion-item color="dark" tappable routerLink="/hotel-detail/{{visita.id}}" *ngFor="let visita of visitas | slice:4:8; let i = index"> -->
                 <ion-item tappable routerLink="/visita-detail/{{visita.id}}" *ngFor="let visita of _visitas.visitas_cumplidas" [ngClass]="colorxEstado(visita.data.estado)">
+                    <hr class="colorvisabierta">
                     <ion-label>
-                        <h2 [ngClass]="{'fw700 text-white': !true}">
+                        <h2 [ngClass]="{'fw700 text-white': true}">
                             <div class="fechavisita">
                                 <ion-icon name="calendar" slot="start" color="secondary" *ngIf="true"></ion-icon>
                                 <ion-icon name="mail-open" slot="start" color="primary" *ngIf="!true"></ion-icon>
@@ -247,15 +251,16 @@
                             </div>
                             <!-- <ion-text color="primary">Mensaje</ion-text> -->
                         </h2>
-                        <hr>
+                        <hr class="hrvisitacerrada">
                         <h2 class="clientevisita">
+                            <!--  ="colorxEstado(visita.data.estado)">-->
                             <ion-text color="dark"> {{visita.data.nombre}}</ion-text>
                         </h2>
                         <h3>
                             <div class="direcvisita">
-                                <ion-icon name="pin" slot="start" class="direcvisita"></ion-icon>
+                                <ion-icon name="pin" slot="start" color="tertiary" class="direcvisita"></ion-icon>
                                 <!-- <p [ngClass]="{'text-light': !true}"> -->
-                                <ion-text color="dark"> {{visita.data.direccion}} </ion-text>
+                                <ion-text color="dark"> {{visita.data.direccion}} Id: {{visita.data.cod_tercer}} </ion-text>
                                 <!-- </p> -->
                             </div>
                         </h3>

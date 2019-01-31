@@ -305,7 +305,7 @@ a {
     height: 120px;
 }
 
-color {
+.color {
     background-color: #ffffff;
 }
 
@@ -323,7 +323,21 @@ color {
 }
 
 .background-tolbar {
-    background-image: linear-gradient(135deg, #595959, #131313);
+    // background-image: linear-gradient(135deg, #595959, #131313);
+    background-image: linear-gradient(135deg, var(--ion-color-dark-contrast), var(--ion-color-medium-tint));
+    // }    
+}
+
+.buttonult {
+    text-transform: none !important;
+    padding-right: 5px !important;
+    padding-left: 5PX !important;
+}
+
+button-native {
+    text-transform: none !important;
+    padding-right: 5px !important;
+    padding-left: 5PX !important;
 }
 
 .ion-padding {
@@ -368,6 +382,13 @@ color {
     background-color: #e3e3e5;
     --btn-background: #e3e3e5;
     --btn-border-color: var(--border-color-checked);
+}
+
+.segmentabs {
+    justify-content: flex-start;
+    --background-checked: dodgerblue;
+    --color-checked: var(--ion-color-primary, #3880ff);
+    --color-checked-disabled: var(--ion-color-light);
 }
 
 .margin-bottom {

@@ -98,7 +98,12 @@
                 "MIN_BACKGROUND_DURATION": "30"
             },
             "cordova-plugin-ionic-webview": {
-                "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+                "APP_ID": "4771304e",
+                "CHANNEL_NAME": "Master",
+                "UPDATE_METHOD": "background",
+                "MAX_STORE": "3",
+                "UPDATE_API": "https://api.ionicjs.com",
+                "MIN_BACKGROUND_DURATION": "30"
             },
             "cordova-plugin-bluetooth-serial": {},
             "cordova-plugin-camera": {},

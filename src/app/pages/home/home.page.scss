@@ -170,3 +170,36 @@ ion-slide {
     padding-bottom: 8px;
     background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
+
+.colorvisabierta {
+    color: #035f31;
+}
+
+.colorviscerrada {
+    color: #f52f2f;
+}
+
+.colorvispend {
+    color: #080808;
+}
+
+.hrvisitaabierta {
+    height: 3px;
+    background-color: #73db37;
+    box-sizing: content-box;
+    margin-top: 13px;
+}
+
+.hrvisitacerrada {
+    height: 3px;
+    background-color: #f52f2f;
+    box-sizing: content-box;
+    margin-top: 13px;
+}
+
+.hrvisitanoabierta {
+    height: 3px;
+    background-color: #2299e8;
+    box-sizing: content-box;
+    margin-top: 13px;
+}

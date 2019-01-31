@@ -19,7 +19,7 @@ import { HomePage } from './home.page';
         component: HomePage
       }
     ]),
-    TranslateModule.forChild(),
+     TranslateModule.forChild(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y'
     })
