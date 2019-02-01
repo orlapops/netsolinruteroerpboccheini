@@ -1,6 +1,6 @@
 {
     "name": "netsolinappruterpbocche",
-    "version": "1.1.291",
+    "version": "1.2.12",
     "author": "Equipo Netsolin. Sistemas Integrales de Colombia SAS",
     "homepage": "http://netsolin.com/",
     "scripts": {
@@ -63,8 +63,8 @@
     "devDependencies": {
         "@angular-devkit/architect": "~0.12.3",
         "@angular-devkit/build-angular": "~0.12.3",
-        "@angular-devkit/core": "^7.2.3",
-        "@angular-devkit/schematics": "^7.2.3",
+        "@angular-devkit/core": "^7.3.0",
+        "@angular-devkit/schematics": "^7.3.0",
         "@angular/cli": "~7.2.3",
         "@angular/compiler": "~7.2.2",
         "@angular/compiler-cli": "~7.2.2",

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="netsolinappruterpbocche.com.netsolin" version="1.2.11" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="netsolinappruterpbocche.com.netsolin" version="1.2.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Netsolin Rutas Erp Bochherini</name>
     <description>App Netsolin rutero y operenaciones Erp Netsolin.</description>
     <author email="info@netsolin.com" href="http://netsolin.com/">Equipo Netsolin</author>
