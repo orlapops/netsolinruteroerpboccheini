@@ -20,6 +20,7 @@ export class PedidoPage implements OnInit {
   grabando_pedido = false;
   grabo_pedido = false;
   mostrandoresulado = false;
+  itemprodaped: any;
   constructor(
     public navCtrl: NavController,
     public btCtrl: BluetoothSerial,
@@ -48,17 +49,23 @@ export class PedidoPage implements OnInit {
   getPedido() {
     this._prods.getPedido()
       .then(data => {
-        console.log('getfavoritos data', data);
+        // console.log('getfavoritos data', data);
          this.pedido = data; 
          this.actualizar_totalped();
         });
   }
-  total(item, i){
-    console.log('en total item llega:', i, item, this.pedido);
-    this.pedido[i].item.total = this.pedido[i].item.cantidad * this.pedido[i].item.precio;
+  total(item, i, ev: any){
+    // console.log('en total item llega:', i, item, this.pedido);
+    this.itemprodaped = this._prods.getProdPed(this.pedido[i].item.cod_ref);
+    if (this.pedido[i].item.cantidad < 0)
+    {
+      this.pedido[i].item.cantidad = 0;
+      ev.target.value = 0;
+    } else {
+      this.pedido[i].item.total = this.pedido[i].item.cantidad * this.pedido[i].item.precio;
+    }
     this.actualizar_totalped();
     this._prods.guardar_storage_pedido();
-
     // this.total_t = 0;
     // this.total_t = this.cantidad_sol * this.prodshop.precio_ven;    
     // return this.total_t;
@@ -68,8 +75,8 @@ export class PedidoPage implements OnInit {
     for( let itemp of this.pedido ){
       this.total_ped += Number(itemp.item.total)
     ;
-      console.log("SUMA")
-      console.log (this.total_ped)
+      // console.log("SUMA")
+      // console.log (this.total_ped)
     }
   }
   realizar_pedido(){
@@ -79,20 +86,22 @@ export class PedidoPage implements OnInit {
       if (res){
         this.mostrandoresulado = true;
         this.grabo_pedido = true;
+        //Actualizar existencias de referencias restando valores
+        this._prods.restaExistenciasprodxpedido();
         this._prods.borrar_storage_pedido();
-        console.log('retorna genera_pedido_netsolin res:', res);
+        // console.log('retorna genera_pedido_netsolin res:', res);
       } else {
         this.mostrandoresulado = true;
         this.grabo_pedido = false;
         this.grabando_pedido = true;
-        console.log('retorna genera_pedido_netsolin error.message: ');  
+        // console.log('retorna genera_pedido_netsolin error.message: ');  
       }
     })
     .catch(error => {
       this.mostrandoresulado = true;
       this.grabo_pedido = false;
       this.grabando_pedido = true;
-      console.log('retorna genera_pedido_netsolin error.message: ', error.message);
+      // console.log('retorna genera_pedido_netsolin error.message: ', error.message);
     });
   }
   quitar_resuladograboped(){

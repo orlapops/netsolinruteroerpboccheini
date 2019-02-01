@@ -45,9 +45,18 @@ export class ProdDetailPedPage implements OnInit {
   checkout(prodshopID: number, prodID: number) {
     this.navCtrl.navigateForward(`prod-checkout.ped/${prodshopID}/${prodID}`);
   }
+  changecantsol(ev: any) {
+    // console.log('total ev: ', ev);
+    // console.log('total ev.target.value: ', ev.target.value);
+    this.total();
+    ev.target.value = this.cantidad_sol;
+  }
 
   total(){
     this.total_t = 0;
+    if (this.cantidad_sol < 0){
+      this.cantidad_sol = 0;
+    }
     this.total_t = this.cantidad_sol * this.prodshop.precio_ven;    
     return this.total_t;
   }
@@ -70,7 +79,7 @@ export class ProdDetailPedPage implements OnInit {
     this.cantidad_sol = this.cantidad_sol + 1;
     this.total();
   }
-  decrentar_cantidad() {
+  decrementar_cantidad() {
     this.cantidad_sol = this.cantidad_sol - 1;
     this.total();
   }

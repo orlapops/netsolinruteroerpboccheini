@@ -10,6 +10,27 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "./theme/animate.css";
 //visitas
+.hrvisitaabierta {
+    height: 3px;
+    background-color: #73db37;
+    box-sizing: content-box;
+    margin-top: 13px;
+}
+
+.hrvisitacerrada {
+    height: 3px;
+    background-color: #2299e8;
+    box-sizing: content-box;
+    margin-top: 13px;
+}
+
+.hrvisitanoabierta {
+    height: 3px;
+    background-color: #f52f2f;
+    box-sizing: content-box;
+    margin-top: 13px;
+}
+
 .horavisita {
     position: absolute;
     left: 70%;
@@ -42,6 +63,12 @@
     position: relative;
     left: 0%;
     top: 90%;
+}
+
+.horavisita {
+    position: absolute;
+    left: 80%;
+    top: 5%;
 }
 
 // backgrounds //

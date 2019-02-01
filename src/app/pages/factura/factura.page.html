@@ -27,7 +27,7 @@
                 <ion-col>
                     <ion-row>
                         <ion-col>
-                            <div text-lowercase>
+                            <div>
                                 <ion-text color="primary" slot="start" tappable routerLink="/prod-detail/{{itemf.item.cod_ref}}">
                                     {{itemf.item.cod_ref}} {{itemf.item.nombre}}
                                 </ion-text>
@@ -37,7 +37,7 @@
                     <ion-row>
                         <ion-col size="7" class="justify-content-start">
                             <div>
-                                <ion-input slot="start" (ionChange)="total(itemf,i)" [(ngModel)]="itemf.item.cantidad" type="number" min="1" max="1000" step="1" placeholder="Cantidad" clearOnEdit="true">
+                                <ion-input slot="start" (ionChange)="total(itemf,i,$event)" [(ngModel)]="itemf.item.cantidad" type="number" min="1" max="1000" step="1" placeholder="Cantidad" clearOnEdit="false">
                                 </ion-input>
                             </div>
                         </ion-col>

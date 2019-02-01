@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { TranslateProvider } from '../../providers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdsService } from '../../providers/prods/prods.service';
@@ -21,6 +21,7 @@ export class ProdDetailPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
     private translate: TranslateProvider,
     public prods: ProdsService,
     public route: ActivatedRoute,
@@ -31,7 +32,7 @@ export class ProdDetailPage implements OnInit {
 
   ngOnInit() {
     // this.prodshop = this.prods.getItem(this.prodID);
-    this.prodshop = this.prods.getProd(this.prodID);
+    this.prodshop = this.prods.getProdPed(this.prodID);
     console.log('ngonit prod detalle ', this.prodshop);
     //traer el registro si esta en lista de lo que se va a facturar
     this.prodenFact = this.prods.getitemFactura(this.prodID);
@@ -49,11 +50,35 @@ export class ProdDetailPage implements OnInit {
     this.cantidad_sol = this.cantidad_sol + 1;
     this.total();
   }
-  total(){
+  decrementar_cantidad() {
+    this.cantidad_sol = this.cantidad_sol - 1;
+    this.total();
+  }
+  changecantsol(ev: any) {
+    // console.log('total ev: ', ev);
+    // console.log('total ev.target.value: ', ev.target.value);
+    this.total();
+    ev.target.value = this.cantidad_sol;
+  }
+  total() {
     this.total_t = 0;
+    if (this.cantidad_sol > this.prodshop.existencia) {
+      this.cantidad_sol = this.prodshop.existencia;
+      
+      // this.alertCtrl.create({
+      //   header:'Error',
+      //   subHeader: 'Cantidad Invalida',
+      //   message: 'No puede sobrepasar las existencias',
+      //   buttons: ['Aceptar']
+      // }).then (alert => alert.present());
+    } else {
+      if (this.cantidad_sol < 0){
+        this.cantidad_sol = 0;
+      }
+    }
     this.total_t = this.cantidad_sol * this.prodshop.precio_ven;    
     return this.total_t;
-  }  
+  }
 
   async addfactura(item) {
 

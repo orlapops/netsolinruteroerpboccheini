@@ -14,6 +14,7 @@ import {
 import { VisitasProvider } from '../../providers/visitas/visitas.service';
 import { HomePage } from '../home/home.page';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ParEmpreService } from '../../providers/par-empre.service';
 
 @Component({
   selector: 'app-visita-list',
@@ -41,6 +42,7 @@ export class VisitaListPage implements OnInit {
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private translate: TranslateProvider,
+    public _parEmpre: ParEmpreService,
     public _visitas: VisitasProvider,
     public _pagehome: HomePage
     // public visitaService: VisitasProvider

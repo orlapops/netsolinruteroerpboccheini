@@ -20,7 +20,7 @@ export class WalkthroughPage implements OnInit {
   slideList: Array<any> = [
     {
       title: 'Que es Netsolin Movil<strong>Booking</strong>?',
-      description: 'Netsolin Erp Movil, le permite tener la empresa en cualquier lugar.',
+      description: 'Netsolin Erp Movil, llvar las operaciones de la empresa al lugar donde lo requiera.',
       image: 'assets/img/netsolin-logo3.png',
     },
     {
@@ -35,7 +35,7 @@ export class WalkthroughPage implements OnInit {
     },
     {
       title: 'Genere operaciones!',
-      description: 'Realize pedidos, facturas, recibos de caja, registre cambios y devoluciones.',
+      description: 'Realize pedidos, facturas, recaudos, actividades.',
       image: 'assets/img/hotel-sp03.png',
     },
     {

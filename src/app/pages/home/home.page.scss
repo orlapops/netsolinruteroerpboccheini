@@ -2,6 +2,20 @@
     ion-content {
         --background: linear-gradient(-135deg, var(--ion-color-medium), var(--ion-color-light))
     }
+    --padding-top: 0;
+    --padding-end: 1px;
+    --padding-bottom: 0;
+    --padding-start: 1px;
+    --transition: color 0.15s linear 0s,
+    opacity 0.15s linear 0s;
+    min-width: 90px;
+    max-width: 360px;
+    min-height: 48px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    line-height: 20px;
+    text-transform: uppercase;
 }
 
 ion-content {
@@ -181,25 +195,4 @@ ion-slide {
 
 .colorvispend {
     color: #080808;
-}
-
-.hrvisitaabierta {
-    height: 3px;
-    background-color: #73db37;
-    box-sizing: content-box;
-    margin-top: 13px;
-}
-
-.hrvisitacerrada {
-    height: 3px;
-    background-color: #f52f2f;
-    box-sizing: content-box;
-    margin-top: 13px;
-}
-
-.hrvisitanoabierta {
-    height: 3px;
-    background-color: #2299e8;
-    box-sizing: content-box;
-    margin-top: 13px;
 }

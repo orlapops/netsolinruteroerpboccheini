@@ -20,6 +20,7 @@ export class FacturaPage implements OnInit {
   grabando_factura = false;
   grabo_factura = false;
   mostrandoresulado = false;
+  itemprodafac: any;
   constructor(
     public navCtrl: NavController,
     public btCtrl: BluetoothSerial,
@@ -47,14 +48,28 @@ export class FacturaPage implements OnInit {
   getFactura() {
     this._prods.getFactura()
       .then(data => {
-        console.log('getfavoritos data', data);
+        // console.log('getfavoritos data', data);
          this.factura = data; 
          this.actualizar_totalfact();
         });
   }
-  total(item, i){
-    console.log('en total item llega:', i, item, this.factura);
-    this.factura[i].item.total = this.factura[i].item.cantidad * this.factura[i].item.precio;
+  total(item, i, ev: any){
+    // console.log('en total item llega:', i, item, this.factura);
+    this.itemprodafac = this._prods.getProd(this.factura[i].item.cod_ref);
+    // console.log('datos item prod a facturar ', this.itemprodafac);
+    if (this.factura[i].item.cantidad > this.itemprodafac.existencia)
+    {
+      this.factura[i].item.cantidad = this.itemprodafac.existencia;
+      ev.target.value = this.factura[i].item.cantidad;
+    } else {
+      if (this.factura[i].item.cantidad < 0)
+      {
+        this.factura[i].item.cantidad = 0;
+        ev.target.value = 0;
+        } else {
+        this.factura[i].item.total = this.factura[i].item.cantidad * this.factura[i].item.precio;
+      }
+    }
     this.actualizar_totalfact();
     this._prods.guardar_storage_factura();
 
@@ -68,8 +83,8 @@ export class FacturaPage implements OnInit {
     for( let itemf of this.factura ){
       this.total_fact += Number(itemf.item.total)
     ;
-      console.log("SUMA")
-      console.log (this.total_fact)
+      // console.log("SUMA")
+      // console.log (this.total_fact)
     }
   }
   realizar_factura(){
@@ -79,20 +94,22 @@ export class FacturaPage implements OnInit {
       if (res){
         this.mostrandoresulado = true;
         this.grabo_factura = true;
+        //Actualizar existencias de referencias restando valores
+        this._prods.restaExistenciasprodxfact();
         this._prods.borrar_storage_factura();
-        console.log('retorna genera_factura_netsolin res:', res);
+        // console.log('retorna genera_factura_netsolin res:', res);
       } else {
         this.mostrandoresulado = true;
         this.grabo_factura = false;
         this.grabando_factura = true;
-        console.log('retorna genera_factura_netsolin error : ', this._visitas.visita_activa_copvdet.resgrb_factu);  
+        // console.log('retorna genera_factura_netsolin error : ', this._visitas.visita_activa_copvdet.resgrb_factu);  
       }
     })
     .catch(error => {
       this.mostrandoresulado = true;
       this.grabo_factura = false;
       this.grabando_factura = true;
-      console.log('retorna genera_factura_netsolin error.message: ', error.message);
+      // console.log('retorna genera_factura_netsolin error.message: ', error.message);
     });
   }
 

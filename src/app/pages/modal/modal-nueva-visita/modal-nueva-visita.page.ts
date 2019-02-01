@@ -84,7 +84,7 @@ export class ModalNuevaVisitaPage implements OnInit {
   mostrar_camara(){
     console.log('en mostrar camara1');
     const optionscam: CameraOptions = {
-      quality: 60,
+      quality: 40,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE

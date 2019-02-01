@@ -13,36 +13,6 @@ ion-content {
     padding-bottom: 120px;
 }
 
-.horavisita {
-    position: absolute;
-    left: 80%;
-    top: 5%;
-}
-
-.fechavisita {
-    position: absolute;
-    left: 0%;
-    top: 5%;
-}
-
-.clientevisita {
-    position: relative;
-    left: 0%;
-    top: 15%;
-}
-
-.direcvisita {
-    position: relative;
-    left: 0%;
-    top: 80%;
-}
-
-.notavisita {
-    position: relative;
-    left: 0%;
-    top: 90%;
-}
-
 agm-map {
     height: 72vh;
     .gmnoprint {

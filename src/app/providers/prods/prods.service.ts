@@ -162,17 +162,14 @@ export class ProdsService implements OnInit {
       );
       console.log('url:', url);
       this.http.post(url, NetsolinApp.objenvrest).subscribe((data: any) => {
-        console.log(" cargaInventarioNetsolinPedido data:", data);
+        // console.log(" cargaInventarioNetsolinPedido data:", data);
         if (data.error) {
-          console.error(" cargaInventarioNetsolinPedido ", data.error);
+          // console.error(" cargaInventarioNetsolinPedido ", data.error);
           this.cargoInventarioNetsolinPed = false;
           this.inventarioPed = null;
           resolve(false);
         } else {
-          console.log(
-            "Datos traer cargaInventarioNetsolinPedido ",
-            data.inventario
-          );
+          // console.log("Datos traer cargaInventarioNetsolinPedido ",data.inventario);
           this.cargoInventarioNetsolinPed = true;
           // this.menerror_usuar="";
           this.inventarioPed = data.inventario;
@@ -313,7 +310,7 @@ export class ProdsService implements OnInit {
 
   //cargar de firebase el inventario pedido suscribirse para que quede actualizado
   cargaInventariodFBpedido(bodega) {
-    this.getInvdFB(bodega).subscribe((datos: any) => {
+    this.getInvdFBpedido(bodega).subscribe((datos: any) => {
       // console.log("En cargaInventariodFBpedido 1 datos:", datos);
       if (datos) {
         // console.log(
@@ -337,7 +334,7 @@ export class ProdsService implements OnInit {
     // console.log("buscarProducto searchKey:", searchKey);
     let key: string = searchKey.toUpperCase();
     // console.log("buscarProducto key:", key);
-    // console.log(this.inventario);
+    console.log(this.inventario);
     return Promise.resolve(
       this.inventario.filter(
         (item: any) =>
@@ -348,7 +345,7 @@ export class ProdsService implements OnInit {
   }
 
   buscarProductoPed(searchKey: string) {
-    console.log("buscarProductoPed searchKey:", searchKey);
+    // console.log("buscarProductoPed searchKey:", searchKey);
     let key: string = searchKey.toUpperCase();
     // console.log("buscarProductoPed key:", key);
     console.log(this.inventarioPed);
@@ -377,6 +374,27 @@ export class ProdsService implements OnInit {
       }
     }
     return null;
+  }
+    //REsta las existencias despues de grabar un pedido en matriz de productos a pedir
+    restaExistenciasprodxpedido(){
+      this.pedido.forEach((val, i) => {
+        for (let i = 0; i < this.inventarioPed.length; i++) {
+          if (this.inventarioPed[i].cod_refinv === val.item.cod_ref) {
+             this.inventarioPed[i].existencia -= val.item.cantidad;
+            }
+        }
+      });
+    }
+
+    //REsta las existencias despues de grabar una factura en matriz de productos a facturar
+  restaExistenciasprodxfact(){
+    this.factura.forEach((val, i) => {
+      for (let i = 0; i < this.inventario.length; i++) {
+        if (this.inventario[i].cod_refinv === val.item.cod_ref) {
+           this.inventario[i].existencia -= val.item.cantidad;
+          }
+      }
+    });
   }
 
   //adiciona un item a factura

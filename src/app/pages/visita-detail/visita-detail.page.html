@@ -32,56 +32,54 @@
     </ion-card>
 </div>
 <ion-content class="animated fadeIn" *ngIf="cargoVisitaActual && cargo_clienteact">
-    <!-- <ion-slides pager="true" class="margin-bottom">
-        <ion-slide *ngFor="let image of visita.images" (click)="presentImage(image)">
-        <img [src]="image">
-        <div class="shadow"></div>
-        </ion-slide>
-        </ion-slides> -->
     <div padding-horizontal *ngIf="cargo_clienteact" class="ion-padding">
-        <!-- class="background-tolbar" -->
-        <ion-segment [(ngModel)]="visitaSegment" class="segmentabs">
-            <!-- class="btdetalles-color text-color" -->
-            <ion-segment-button size="small" class="buttonult" value="details" checked>
-                <ion-label>Detalle</ion-label>
-            </ion-segment-button>
-            <!-- class="btactividades-color text-color" -->
-            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="actividades">
-                <ion-label>Actividades</ion-label>
-            </ion-segment-button>
-            <!-- class="btcartera-color text-color" -->
-            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
+        <ion-toolbar class="toolbaropciones" color="medium">
+            <!-- class="background-tolbar" -->
+            <ion-segment [(ngModel)]="visitaSegment" scrollable class="segmentabs">
+                <!-- class="btdetalles-color text-color" -->
+                <ion-segment-button size="small" class="buttonult" value="details" checked>
+                    <ion-label>Detalle</ion-label>
+                </ion-segment-button>
+                <!-- class="btactividades-color text-color" -->
+                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="actividades">
+                    <ion-label>Actividades</ion-label>
+                </ion-segment-button>
+                <!-- class="btcartera-color text-color" -->
+                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
                 <ion-label>Cartera</ion-label>
-            </ion-segment-button>
-            <!-- class="btfacturar-color text-color" -->
-            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
+            </ion-segment-button> -->
+                <!-- class="btfacturar-color text-color" -->
+                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
                 <ion-label>Factura</ion-label>
-            </ion-segment-button>
-            <!-- class="btpedido-color text-color" -->
-            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
+            </ion-segment-button> -->
+                <!-- class="btpedido-color text-color" -->
+                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
                 <ion-label>Pedidos</ion-label>
-            </ion-segment-button>
-        </ion-segment>
+            </ion-segment-button> -->
+            </ion-segment>
+        </ion-toolbar>
         <div [ngSwitch]="visitaSegment">
             <div *ngSwitchCase="'details'" class="bg-white detalles-padding">
                 <ion-card no-margin margin-top margin-bottom class="animated fadeIn margin-bottom margin-top">
-                    <ion-item [ngClass]="colorxEstado(visitaAct.estado)" class="background">
+                    <!-- <ion-item [ngClass]="colorxEstado(visitaAct.estado)" class="background"> -->
+                    <ion-item [ngClass]="colorxEstado(visitaAct.estado)">
                         <ion-grid class="size-col">
                             <ion-row>
                                 <ion-col size="3">
-                                    <ion-avatar>
+                                    <ion-avatar class="cliente-avatar" (click)="presentImage(ubicaAct.link_foto)">
                                         <!-- <img *ngIf="_visitas.direc_actual != null" [src]="_DomSanitizer.bypassSecurityTrustUrl(_visitas.direc_actual.link_foto)" /> -->
                                         <img *ngIf="cargo_ubicaact && ubicaAct.link_foto" [src]="_DomSanitizer.bypassSecurityTrustUrl(ubicaAct.link_foto)" />
                                         <img *ngIf="cargo_ubicaact && !ubicaAct.link_foto" src="assets/img/imagennodisponible.jpg" />
                                     </ion-avatar>
                                 </ion-col>
                                 <ion-col size="9" class="text-align">
-
-                                    <p class="clientevisita" class="text">
-                                        <ion-text color="dark"> {{visitaAct.nombre}} </ion-text>
-                                    </p>
-
-                                    <h4 [ngClass]="{'fw700 text-white': !true}" class="background">
+                                    <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
+                                    <hr *ngIf="visita.data.estado === 'C'" class="hrvisitacerrada">
+                                    <hr *ngIf="visita.data.estado != 'A' && visita.data.estado != 'C'" class="hrvisitanoabierta">
+                                    <!-- <p class="clientevisita text"> -->
+                                    <ion-text color="dark"> {{visitaAct.nombre}} </ion-text>
+                                    <!-- </p> -->
+                                    <h4 class="background">
                                         <div class="fechavisita" class="hour">
                                             <ion-icon name="calendar" slot="start" color="secondary" *ngIf="true"></ion-icon>
                                             <ion-icon name="mail-open" slot="start" color="primary" *ngIf="!true"></ion-icon>
@@ -120,7 +118,8 @@
                     </ion-fab>
 
 
-                    <ion-card-content [ngClass]="colorxEstado(visitaAct.estado)">
+                    <!-- <ion-card-content [ngClass]="colorxEstado(visitaAct.estado)"> -->
+                    <ion-card-content>
                         <ion-label>
 
                             <h2 [ngClass]="{'fw700 text-red': true}">
@@ -170,6 +169,9 @@
                         <ion-text color="primary text-align">
                             <h6 class="fw500">
                                 <ion-icon size="medium" color="dark" name="contact"></ion-icon>{{ visitaAct.nombre }}</h6>
+                            <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
+                            <hr *ngIf="visita.data.estado === 'C'" class="hrvisitacerrada">
+                            <hr *ngIf="visita.data.estado != 'A' && visita.data.estado != 'C'" class="hrvisitanoabierta">
                             <h6 color="light" margin-bottom class="h6">
                                 <ion-icon size="medium" color="dark" name="locate"></ion-icon>{{visitaAct.direccion}}</h6>
                         </ion-text>
@@ -254,8 +256,9 @@
                         <h6>
                             <ion-icon size="small" color="dark" name="bookmark"></ion-icon>{{clienteAct.cliente}}</h6>
                     </ion-text>
-                    <hr class="bg-tertiary">
-
+                    <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
+                    <hr *ngIf="visita.data.estado === 'C'" class="hrvisitacerrada">
+                    <hr *ngIf="visita.data.estado != 'A' && visita.data.estado != 'C'" class="hrvisitanoabierta">
                     <ion-card *ngIf="_parEmpre.usuario.recauda" class="facturaCard">
                         <!-- <ion-card-content>
         <ion-card no-margin margin-vertical class="bg-white" *ngFor="let item of clienteAct.cartera">
@@ -314,7 +317,9 @@
                             <ion-icon size="small" color="dark" name="arrow-round-down" (click)="actimgfactura()"></ion-icon>
                         </h6>
                     </ion-text>
-                    <hr class="bg-tertiary">
+                    <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
+                    <hr *ngIf="visita.data.estado === 'C'" class="hrvisitacerrada">
+                    <hr *ngIf="visita.data.estado != 'A' && visita.data.estado != 'C'" class="hrvisitanoabierta">
                     <ion-searchbar [(ngModel)]="buscar_item" (ionInput)="buscar_productos($event)" placeholder="Buscar Producto"></ion-searchbar>
                     <div *ngIf="searching" class="spinner-container">
                         <ion-spinner></ion-spinner>
@@ -336,7 +341,7 @@
                                         <ion-item>
                                             <p text-capitalize>
                                                 {{item.nombre}}
-                                                <br> Existencias: {{item.existencia}} Precio: {{item.precio_ven | currency :"USD":true}}
+                                                <br> Existencias: {{item.existencia}} Precio: {{item.precio_ven | currency}}
                                             </p>
                                         </ion-item>
                                         <ion-button size="small" shape="round" expand="full" color="success" routerLink="/prod-detail/{{item.cod_refinv}}">
@@ -362,8 +367,10 @@
                             <ion-icon size="small" color="dark" name="arrow-round-down" (click)="actimgpedido()"></ion-icon>
                         </h6>
                     </ion-text>
-
-                    <hr class="bg-tertiary">
+                    <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
+                    <hr *ngIf="visita.data.estado === 'C'" class="hrvisitacerrada">
+                    <hr *ngIf="visita.data.estado != 'A' && visita.data.estado != 'C'" class="hrvisitanoabierta">
+                    <!-- <hr class="bg-tertiary"> -->
                     <ion-searchbar class="margin-top" [(ngModel)]="buscar_itemped" (ionInput)="buscar_productosped($event)" placeholder="Buscar producto"></ion-searchbar>
                     <div *ngIf="searchingped" class="spinner-container">
                         <ion-spinner></ion-spinner>
@@ -385,7 +392,7 @@
                                         <ion-item>
                                             <p text-capitalize>
                                                 {{item.nombre}}
-                                                <br> Existencias: {{item.existencia}} Precio: {{item.precio_ven | currency :"USD":true}}
+                                                <br> Existencias: {{item.existencia}} Precio: {{item.precio_ven | currency}}
                                             </p>
                                         </ion-item>
                                         <ion-button size="small" shape="round" expand="full" color="success" routerLink="/prod-detail.ped/{{item.cod_refinv}}">
@@ -401,30 +408,52 @@
                 </div>
             </div>
             <div>
-                <ion-toolbar color="primary">
-                    <ion-buttons slot="secondary">
-                        <ion-button size="small" class="buttonult" fill="solid" color="tertiary" routerLink="/ultpedido">
-                            <ion-icon slot="start" name="cart"></ion-icon>
-                            U.Pedidos
-                        </ion-button>
-                        <!-- </ion-buttons> -->
-                        <!-- <ion-buttons slot="primary"> -->
-                        <ion-button class="buttonult" fill="solid" color="tertiary" routerLink="/ultfactura">
-                            U.Factur.
-                            <ion-icon slot="start" name="paper"></ion-icon>
-                        </ion-button>
-                        <!-- </ion-buttons> -->
-                        <!-- <ion-buttons slot="primary"> -->
-                        <ion-button class="buttonult" fill="solid" color="tertiary" routerLink="/ultrecibo">
-                            U.Recib.
-                            <ion-icon slot="start" name="cash"></ion-icon>
-                        </ion-button>
-                    </ion-buttons>
-                </ion-toolbar>
             </div>
         </div>
     </div>
 </ion-content>
+<ion-footer>
+    <ion-toolbar class="toolbaropciones" color="medium">
+        <ion-segment [(ngModel)]="visitaSegment" scrollable class="segmentabs">
+            <!-- class="btpedido-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
+                <ion-icon slot="start" name="cart"></ion-icon>
+                <ion-label>Pedidos</ion-label>
+            </ion-segment-button>
+            <!-- class="btfacturar-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
+                <ion-icon slot="start" name="paper"></ion-icon>
+                <ion-label>Factura</ion-label>
+            </ion-segment-button>
+            <!-- class="btcartera-color text-color" -->
+            <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
+                <ion-icon slot="start" name="cash"></ion-icon>
+                <ion-label>Recaudo</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-toolbar class="toolbaropciones" color="medium">
+        <ion-buttons slot="secondary">
+            <ion-button size="small" class="buttonult" fill="solid" color="tertiary" routerLink="/ultpedido">
+                <ion-icon slot="start" name="cart"></ion-icon>
+                U.Pedidos
+            </ion-button>
+            <!-- </ion-buttons> -->
+            <!-- <ion-buttons slot="primary"> -->
+            <ion-button class="buttonult" fill="solid" color="tertiary" routerLink="/ultfactura">
+                U.Factur.
+                <ion-icon slot="start" name="paper"></ion-icon>
+            </ion-button>
+            <!-- </ion-buttons> -->
+            <!-- <ion-buttons slot="primary"> -->
+            <ion-button class="buttonult" fill="solid" color="tertiary" routerLink="/ultrecibo">
+                U.Recaudo
+                <ion-icon slot="start" name="cash"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-footer>
 
 <!-- <ion-toolbar color="primary">
         <ion-tabs>

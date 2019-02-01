@@ -50,8 +50,8 @@ export class VisitaDetailPage implements OnInit {
   visitaSegment: string = 'details';
   estadoVisita: string = '';
   cargoCartera = false;
-  buscar_item:string;
-  buscar_itemped:string;
+  buscar_item: string = '';
+  buscar_itemped: string = '';
   q: any;
   productos_bus: any;
   searching: any = false;
@@ -98,25 +98,25 @@ export class VisitaDetailPage implements OnInit {
             // console.log('envando a pruba impresora');
             // this.impresora.write('Hola mundo').then(() => {} );
           });
-    console.log('constructor detalle visita');
-    console.log(this.visitaID);
+    // console.log('constructor detalle visita');
+    // console.log(this.visitaID);
     this.visita = this._visitas.getItem(this.visitaID);
-    console.log('constructor detalle visita 2 this.visita:', this.visita);    
+    // console.log('constructor detalle visita 2 this.visita:', this.visita);    
     this.cargo_clienteact = false;
     this.cargo_clienteact = false;
     this.cargo_ubicaact = false;
     this._visitas.actualizarclientenetsolinFb(this.visita.data.cod_tercer).then(result =>{
-      console.log('Actualizar cliente netsolin result:', result);
+      // console.log('Actualizar cliente netsolin result:', result);
       if (result){
         //Suscribirse a cliente actual fb
         this._cliente.getClienteFb(this.visita.data.cod_tercer).subscribe((datos: any) => {
-            console.log('Suscribe a clientes fb ', datos);
+            // console.log('Suscribe a clientes fb ', datos);
             this.clienteAct = datos;
             this.cargo_clienteact = true;
             //encontrar ubicacion actual en arreglo
             this.ubicaAct = null;
             this.cargo_ubicaact = false;
-            console.log('a buscar ubica act ',this.visita.data.cod_tercer, this.visita.data.id_dir);
+            // console.log('a buscar ubica act ',this.visita.data.cod_tercer, this.visita.data.id_dir);
             for (var i = 0; i < this.clienteAct.direcciones.length; i++) {
               if (this.clienteAct.direcciones[i].id_dir === this.visita.data.id_dir) {
                 // this.ubicaAct = this.clienteAct.direcciones[i];
@@ -139,13 +139,13 @@ export class VisitaDetailPage implements OnInit {
         //   }
         // });
       this._visitas.getVisitaActual(this.visitaID).subscribe((datos: any) => {
-          console.log('constructor detalle visita getVisitaActual datos:', datos);                
+          // console.log('constructor detalle visita getVisitaActual datos:', datos);                
           this.visitaAct = datos;
           this._visitas.visita_activa_copvdet = datos;
           this.cargoVisitaActual = true;
-          console.log('constructor detalle visita 4 this.visitaAct: ', this.visitaAct);
+          // console.log('constructor detalle visita 4 this.visitaAct: ', this.visitaAct);
           this._actividad.getActividadesVisitaActual(this.visitaAct).subscribe((datosa: any) => {
-            console.log('actividades de la visita: ', datosa);
+            // console.log('actividades de la visita: ', datosa);
             this.listaactividades = datosa;
             // console.log(this.listaactividades.id);
             // console.log(this.listaactividades.payload.doc);
@@ -153,9 +153,9 @@ export class VisitaDetailPage implements OnInit {
             // console.log(this.listaactividades.payload.doc.id);
           });
           this._actividad.getFotosVisitaActual(this.visitaAct).subscribe((datosf: any) => {
-            console.log('Fotos de la visita: ', datosf);
+            // console.log('Fotos de la visita: ', datosf);
             this.listafotos = datosf;
-            console.log('Fotos de la visita listafotos: ', this.listafotos);
+            // console.log('Fotos de la visita listafotos: ', this.listafotos);
             // console.log(this.listaactividades.id);
             // console.log(this.listaactividades.payload.doc);
             // console.log(this.listaactividades.payload.doc.data());
@@ -167,7 +167,7 @@ export class VisitaDetailPage implements OnInit {
     .catch(error => {
       console.log('Error al actualizarclientenetsolinFb error.message:', error);
     });
-    console.log('constructor detalle visita 3');
+    // console.log('constructor detalle visita 3');
 
 
   //     // if (datos) {
@@ -181,8 +181,8 @@ export class VisitaDetailPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ngoniit visita detalle');
-    console.log(this.visita);
+    // console.log('ngoniit visita detalle');
+    // console.log(this.visita);
     this._prods.cargar_storage_factura(this.visita.data.id_ruta, this.visita.id);
     this._prods.cargar_storage_pedido(this.visita.data.id_ruta, this.visita.id);
     this._recibos.cargar_storage_recibo(this.visita.data.id_ruta, this.visita.id);
@@ -299,27 +299,27 @@ export class VisitaDetailPage implements OnInit {
   buscar_productos($event){
 
     this.q = $event.target.value;
-    console.log('buscar_productos: ', this.q );
+    // console.log('buscar_productos: ', this.q );
     this.searching = true;
     // this._visitas.buscarProducto(this.q).then(lbusq => {
     this._prods.buscarProducto(this.q).then(lbusq => {
-      console.log('lo buscado por producto: ' , lbusq);
+      // console.log('lo buscado por producto: ' , lbusq);
       this.productos_bus = lbusq;
       this.searching = false;
-      console.log('lo buscado por producto  this.productos_bus: ' ,  this.productos_bus);
+      // console.log('lo buscado por producto  this.productos_bus: ' ,  this.productos_bus);
 
     });    
   }
     buscar_productosped($event){
       this.qped = $event.target.value;
-      console.log('buscar_productos ped: ', this.qped );
+      // console.log('buscar_productos ped: ', this.qped );
       this.searchingped = true;
       // this._visitas.buscarProducto(this.q).then(lbusq => {
       this._prods.buscarProductoPed(this.qped).then(lbusq => {
-        console.log('lo buscado por producto: ' , lbusq);
+        // console.log('lo buscado por producto: ' , lbusq);
         this.productos_busped = lbusq;
         this.searchingped = false;
-        console.log('lo buscado por producto  this.productos_bus: ' ,  this.productos_busped);
+        // console.log('lo buscado por producto  this.productos_bus: ' ,  this.productos_busped);
   
       });    
     //     if (this.q != '') {
@@ -334,7 +334,7 @@ export class VisitaDetailPage implements OnInit {
   tomafoto(){
       console.log('en tomafoto camara1');
       const optionscam: CameraOptions = {
-        quality: 60,
+        quality: 40,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.PNG,
         mediaType: this.camera.MediaType.PICTURE
