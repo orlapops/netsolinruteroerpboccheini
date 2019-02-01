@@ -261,7 +261,6 @@ export class ProdsService implements OnInit {
       .doc(id)
       .set(inventario);
   }
-
   //guardar el inventario pedido en firebase
   public guardarInvdFBpedido(id, inventario) {
     // console.log("guardarInvdFBpedido id:", id, inventario);
