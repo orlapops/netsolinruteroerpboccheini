@@ -1,7 +1,7 @@
 {
     "app.name": "NetsolinApp",
-    "app.version": "1",
-    "app.description": "Netsolin app Movil",
+    "app.version": "1.2.13",
+    "app.description": "Netsolin Rutero, Operaciones Erp",
 
     "app.button.search": "Buscar",
     "app.button.checkout": "Checkout",

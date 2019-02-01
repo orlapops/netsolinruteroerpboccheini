@@ -45,17 +45,17 @@
                     <ion-label>Actividades</ion-label>
                 </ion-segment-button>
                 <!-- class="btcartera-color text-color" -->
-                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
-                <ion-label>Cartera</ion-label>
-            </ion-segment-button> -->
+                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
+                    <ion-label>Cartera</ion-label>
+                </ion-segment-button>
                 <!-- class="btfacturar-color text-color" -->
-                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
-                <ion-label>Factura</ion-label>
-            </ion-segment-button> -->
+                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
+                    <ion-label>Factura</ion-label>
+                </ion-segment-button>
                 <!-- class="btpedido-color text-color" -->
-                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
-                <ion-label>Pedidos</ion-label>
-            </ion-segment-button> -->
+                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
+                    <ion-label>Pedidos</ion-label>
+                </ion-segment-button>
             </ion-segment>
         </ion-toolbar>
         <div [ngSwitch]="visitaSegment">
