@@ -19,7 +19,7 @@ export class WalkthroughPage implements OnInit {
 
   slideList: Array<any> = [
     {
-      title: 'Que es Netsolin Movil<strong>Booking</strong>?',
+      title: 'Que es <strong>Netsolin</strong> Movil?',
       description: 'Netsolin Erp Movil, llvar las operaciones de la empresa al lugar donde lo requiera.',
       image: 'assets/img/netsolin-logo3.png',
     },

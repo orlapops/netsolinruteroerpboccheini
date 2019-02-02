@@ -45,17 +45,17 @@
                     <ion-label>Actividades</ion-label>
                 </ion-segment-button>
                 <!-- class="btcartera-color text-color" -->
-                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
+                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.recauda" class="buttonult" value="cartera">
                     <ion-label>Cartera</ion-label>
-                </ion-segment-button>
+                </ion-segment-button> -->
                 <!-- class="btfacturar-color text-color" -->
-                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
+                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_factura" class="buttonult" value="facturar">
                     <ion-label>Factura</ion-label>
-                </ion-segment-button>
+                </ion-segment-button> -->
                 <!-- class="btpedido-color text-color" -->
-                <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
+                <!-- <ion-segment-button size="small" *ngIf="_parEmpre.usuario.cap_pedido" class="buttonult" value="pedido">
                     <ion-label>Pedidos</ion-label>
-                </ion-segment-button>
+                </ion-segment-button> -->
             </ion-segment>
         </ion-toolbar>
         <div [ngSwitch]="visitaSegment">
@@ -433,7 +433,7 @@
         </ion-segment>
     </ion-toolbar>
     <ion-toolbar class="toolbaropciones" color="medium">
-        <ion-buttons slot="secondary">
+        <ion-buttons slot="secondary" class="botones">
             <ion-button size="small" class="buttonult" fill="solid" color="tertiary" routerLink="/ultpedido">
                 <ion-icon slot="start" name="cart"></ion-icon>
                 U.Pedidos
