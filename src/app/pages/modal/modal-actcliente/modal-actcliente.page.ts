@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 // import { ImagePage } from '../../modal/image/image.page';
 import { environment } from '../../../../environments/environment'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 declare var google:any;
 
@@ -32,6 +33,7 @@ export class ModalActClientePage implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   title = 'app';
+  public onActclieForm: FormGroup;
 
   constructor(private modalCtrl: ModalController,
     public _visitas: VisitasProvider,
@@ -42,6 +44,7 @@ export class ModalActClientePage implements OnInit {
     private storage: AngularFireStorage,
     public loadingCtrl: LoadingController,
     public _DomSanitizer: DomSanitizer,
+    private formBuilder: FormBuilder,
     private camera: Camera) { 
       console.log('llega coords:',  this.coords);
       platform.ready().then(() => {
@@ -56,7 +59,14 @@ export class ModalActClientePage implements OnInit {
     console.log('ngOnInit ModalActClientePage this._visitas.visita_activa: ', this._visitas.visita_activa);
     console.log('ngOnInit ModalActClientePage _clientes.clienteActual:', this._clientes.clienteActual);
     console.log('ngOnInit ModalActClientePage _visitas.direc_actual:', this._visitas.direc_actual);
-
+    this.onActclieForm = this.formBuilder.group({
+      'direccion': [null, Validators.compose([
+        Validators.required
+      ])],
+      'email': [null, Validators.compose([
+        Validators.required
+      ])]
+    });
 
     // this.coords.lat = this.navParams.get('lat');
     // this.coords.lng = this.navParams.get('lng');

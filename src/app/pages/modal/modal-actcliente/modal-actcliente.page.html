@@ -31,11 +31,39 @@
 
         </ion-card-content>
         <p>{{address}}</p>
+        <form [formGroup]="onActclieForm" class="list-form">
+            <ion-item no-padding class="itemcaptura animated fadeInUp">
+                <ion-label position="floating">
+                    <ion-icon name="mail" item-start></ion-icon>
+                    Direccion</ion-label>
+                <ion-input color="secondary" type="text" formControlName="direccion"></ion-input>
+            </ion-item>
+            <p ion-text class="text08" *ngIf="onActclieForm.get('direccion').touched && onActclieForm.get('direccion').hasError('required')">
+                <ion-text color="danger">
+                    Este campo es obligatorio
+                </ion-text>
+            </p>
+            <ion-item no-padding class="itemcaptura animated fadeInUp">
+                <ion-label position="floating">
+                    <ion-icon name="mail" item-start></ion-icon>
+                    <!-- {{ 'app.label.email' | translate }} -->
+                    Email
+                </ion-label>
+                <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <p ion-text class="text08" *ngIf="onActclieForm.get('email').touched && onActclieForm.get('email').hasError('required')">
+                <ion-text color="danger">
+                    Este campo es obligatorio
+                </ion-text>
+            </p>
+        </form>
         <ion-card-content no-padding>
             <agm-map [latitude]="coords.lat" [longitude]="coords.lng" [zoom]="14" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
                 <agm-marker [latitude]="coords.lat" [longitude]="coords.lng"></agm-marker>
             </agm-map>
         </ion-card-content>
+
+
         <ion-button *ngIf="cargo_posicion" icon-left size="small" shape="round" color="tertiary" (click)="actualiza_ubicaciongps()">
             Actualizar Ubicación
             <ion-icon name="pin"></ion-icon>

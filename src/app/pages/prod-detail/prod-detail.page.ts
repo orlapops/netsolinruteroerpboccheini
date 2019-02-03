@@ -32,7 +32,7 @@ export class ProdDetailPage implements OnInit {
 
   ngOnInit() {
     // this.prodshop = this.prods.getItem(this.prodID);
-    this.prodshop = this.prods.getProdPed(this.prodID);
+    this.prodshop = this.prods.getProd(this.prodID);
     console.log('ngonit prod detalle ', this.prodshop);
     //traer el registro si esta en lista de lo que se va a facturar
     this.prodenFact = this.prods.getitemFactura(this.prodID);
