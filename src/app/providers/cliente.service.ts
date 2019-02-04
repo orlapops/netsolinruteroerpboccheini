@@ -186,7 +186,7 @@ export class ClienteProvider {
             let id_direc = iddirec.toString();
             // console.log(id_direc);
             // this._parempre.reg_log('a actualizar img fb id_direc: ' , id_direc);
-            this.actualizaimagenDirclienteNetsolin(idclie, iddirec, 0, 0, linkref);
+            this.actualizaimagenDirclienteNetsolin(idclie, iddirec, 0, 0, linkref,'','','');
             this.fbDb.collection(`/clientes/${idclie}/direcciones/`).doc(id_direc).update({link_foto: linkref});
             const toast = await this.toastCtrl.create({
               showCloseButton: true,
@@ -202,28 +202,36 @@ export class ClienteProvider {
     });
   }
 
-  actualizaubicafirebase(idclie, iddirec, longitud, latitud) {
+  actualizaubicafirebase(idclie, iddirec, longitud, latitud, pdireccion, pemail, pcontacto) {
     // const storageRef: AngularFireStorageReference = this.afStorage.ref(`/img_clientes/${idclie}/direcciones/${iddirec}`);
     // this._parempre.reg_log('a actualizar ubi fb clie: ' , idclie);
-    // console.log('en actualizaubicafirebase idclie,iddirec: ', idclie, iddirec);    
+    console.log('en actualizaubicafirebase idclie,iddirec: ', idclie, iddirec);    
+    console.log('en actualizaubicafirebase longitud,latitud: ', longitud, latitud);    
    let id_direc = iddirec.toString();
+   console.log('Datos actualizaubicafirebase act:', pdireccion, pemail, pcontacto);
+
   //  console.log(id_direc);
   //  this._parempre.reg_log('a actualizar ubi fb id_direc: ' , id_direc);
-  this.actualizaimagenDirclienteNetsolin(idclie, iddirec, longitud, latitud, '');
-  this.fbDb.collection(`/clientes/${idclie}/direcciones/`).doc(id_direc).update({latitud: latitud, longitud: longitud});
+  this.actualizaimagenDirclienteNetsolin(idclie, iddirec, longitud, latitud, '', pdireccion, pemail, pcontacto);
+  this.fbDb.collection(`/clientes/${idclie}/direcciones/`).doc(id_direc).update({latitud: latitud, longitud: longitud,
+    direccion: pdireccion, email: pemail, contacto: pcontacto});
   }
 
   // Actualiza url firestorage en Netsolin DIRECCION DE UN CLIENTE, para cuando se traiga sea màs rapido
-    actualizaimagenDirclienteNetsolin(idclie, iddirec, longitud, latitud, imageURL: string) {
+    actualizaimagenDirclienteNetsolin(idclie, iddirec, longitud, latitud, imageURL: string, pdireccion, pemail, pcontacto) {
+      console.log('Datos actualizaimagenDirclienteNetsolin act:', pdireccion, pemail, pcontacto);
       return new Promise((resolve, reject) => {
-        let paramgrab = {
+        const paramgrab = {
           id_dir: iddirec,
           link_img: imageURL,
           longitud: longitud,
-          latitud: latitud
+          latitud: latitud,
+          direccion: pdireccion,
+          email: pemail,
+          contacto: pcontacto
         };
         NetsolinApp.objenvrest.parametros = paramgrab;
-        console.log(" actualizaimagenDirclienteNetsolin 1");
+        console.log("  1");
         let url =
           this._parempre.URL_SERVICIOS +
           "netsolin_servirestgo.csvc?VRCod_obj=APPACTIDIRLCLIE";
@@ -238,7 +246,7 @@ export class ClienteProvider {
             console.error(" actualizaimagenDirclienteNetsolin ", data.error);
             resolve(false);
           } else {
-            // console.log("Datos traer actualizaimagenDirclienteNetsolin ",data);
+             console.log("Datos traer actualizaimagenDirclienteNetsolin ",data);
             resolve(true);
           }
           // console.log(" actualizaimagenDirclienteNetsolin 4");

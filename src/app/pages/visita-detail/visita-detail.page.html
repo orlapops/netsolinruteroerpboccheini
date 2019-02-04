@@ -79,7 +79,10 @@
                                     <!-- <p class="clientevisita text"> -->
                                     <ion-text color="dark"> {{visitaAct.nombre}} </ion-text>
                                     <!-- </p> -->
-                                    <h4 class="background">
+                                    <h5 class="idtercer">
+                                        Id: {{visita.data.cod_tercer}}
+                                    </h5>
+                                    <h4 class="background fechahora">
                                         <div class="fechavisita" class="hour">
                                             <ion-icon name="calendar" slot="start" color="secondary" *ngIf="true"></ion-icon>
                                             <ion-icon name="mail-open" slot="start" color="primary" *ngIf="!true"></ion-icon>
@@ -314,7 +317,7 @@
                     <ion-text color="primary">
                         <h6>
                             <ion-icon size="small" color="dark" name="paper"></ion-icon> {{clienteAct.cliente}}
-                            <ion-icon size="small" color="dark" name="arrow-round-down" (click)="actimgfactura()"></ion-icon>
+                            <!-- <ion-icon size="small" color="dark" name="arrow-round-down" (click)="actimgfactura()"></ion-icon> -->
                         </h6>
                     </ion-text>
                     <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">
@@ -364,7 +367,7 @@
                     <ion-text color="primary">
                         <h6>
                             <ion-icon size="small" color="dark" name="cart"></ion-icon> {{clienteAct.cliente}}
-                            <ion-icon size="small" color="dark" name="arrow-round-down" (click)="actimgpedido()"></ion-icon>
+                            <!-- <ion-icon size="small" color="dark" name="arrow-round-down" (click)="actimgpedido()"></ion-icon> -->
                         </h6>
                     </ion-text>
                     <hr *ngIf="visita.data.estado === 'A'" class="hrvisitaabierta">

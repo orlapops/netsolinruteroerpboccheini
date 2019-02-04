@@ -86,6 +86,12 @@ export class AppComponent {
         url: '/support',
         direct: 'forward',
         icon: 'help-buoy'
+      },
+      {
+        title: 'Configurar',
+        url: '/settings',
+        direct: 'forward',
+        icon: 'settings'
       }
     ];
 

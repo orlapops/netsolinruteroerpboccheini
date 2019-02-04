@@ -63,11 +63,20 @@ export class ModalActClientePage implements OnInit {
       'direccion': [null, Validators.compose([
         Validators.required
       ])],
-      'email': [null, Validators.compose([
+      email: ['', Validators.compose([Validators.maxLength(70), 
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+         Validators.required])],
+      // 'email': [null, Validators.compose([
+      //   Validators.required
+      // ])],
+      'contacto': [null, Validators.compose([
         Validators.required
       ])]
     });
-
+    // asignar valores al formulario
+    this.onActclieForm.controls['direccion'].setValue(this._visitas.direc_actual.direccion);
+    this.onActclieForm.controls['email'].setValue(this._visitas.direc_actual.email);
+    this.onActclieForm.controls['contacto'].setValue(this._visitas.direc_actual.contacto);
     // this.coords.lat = this.navParams.get('lat');
     // this.coords.lng = this.navParams.get('lng');
 
@@ -157,15 +166,27 @@ export class ModalActClientePage implements OnInit {
 
   actualiza_ubicaciongps(){
     console.log('actualiza_ubicaciongps', this.coords);
+    const adireccion = this.onActclieForm.controls['direccion'].value;
+    const aemail = this.onActclieForm.controls['email'].value;
+    const acontacto = this.onActclieForm.controls['contacto'].value;
+    console.log('Datos act:', adireccion, aemail, acontacto);
     this._clientes.actualizaubicafirebase(this._visitas.visita_activa_copvdet.cod_tercer, 
       this._visitas.visita_activa_copvdet.id_dir,
-      this.coords.lng, this.coords.lat);
+      this.coords.lng, this.coords.lat,
+      adireccion, aemail, acontacto);
      // Actualizar ubicacion visita actual
+    //  this._visitas.direc_actual.direccion = adireccion;
+    //  this._visitas.direc_actual.email = aemail;
+    //  this._visitas.direc_actual.contacto = acontacto;
+    //  console.log('Datos despues act:', this._visitas.direc_actual.direccion, 
+    //  this._visitas.direc_actual.email, this._visitas.direc_actual.contacto);
      const datactvisita = {
       estado : 'A',
       latitud : this.coords.lat,
       longitud : this.coords.lng
     };
+    //actualiza direc actual en memoria
+
     this._visitas.actualizarVisita(this._visitas.visita_activa_copvdet.id_visita, datactvisita);
     this.presentLoading('Actualizando ubicación');
     // this._visitas.actualizarUbicaVisitaAct(this.coords.lng, this.coords.lat);

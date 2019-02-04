@@ -16,7 +16,14 @@
 <ion-content padding>
     <ion-card>
         <ion-card-header>
-            {{ _clientes.clienteActual.cliente }}!
+            <ion-text color="primary text-align">
+                <h6 class="headerdirec">
+                    <ion-icon size="medium" color="dark" name="contact"></ion-icon>{{ _clientes.clienteActual.cliente }}</h6>
+                <h6 color="light" margin-bottom class="headerdirec">
+                    <ion-icon size="medium" color="dark" name="locate"></ion-icon>{{_visitas.direc_actual.ciudad +' '+ _visitas.direc_actual.direccion}}</h6>
+            </ion-text>
+
+            <!-- {{ _clientes.clienteActual.cliente }}! -->
             <!-- <img [src]="imagenPreview" /> -->
         </ion-card-header>
         <ion-card-content>
@@ -31,10 +38,17 @@
 
         </ion-card-content>
         <p>{{address}}</p>
+
+        <ion-card-content no-padding>
+            <agm-map [latitude]="coords.lat" [longitude]="coords.lng" [zoom]="14" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
+                <agm-marker [latitude]="coords.lat" [longitude]="coords.lng"></agm-marker>
+            </agm-map>
+        </ion-card-content>
+
         <form [formGroup]="onActclieForm" class="list-form">
             <ion-item no-padding class="itemcaptura animated fadeInUp">
                 <ion-label position="floating">
-                    <ion-icon name="mail" item-start></ion-icon>
+                    <ion-icon name="pin" item-start></ion-icon>
                     Direccion</ion-label>
                 <ion-input color="secondary" type="text" formControlName="direccion"></ion-input>
             </ion-item>
@@ -56,16 +70,22 @@
                     Este campo es obligatorio
                 </ion-text>
             </p>
+            <ion-item no-padding class="itemcaptura animated fadeInUp">
+                <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    <!-- {{ 'app.label.email' | translate }} -->
+                    Contacto
+                </ion-label>
+                <ion-input color="secondary" type="email" formControlName="contacto"></ion-input>
+            </ion-item>
+            <p ion-text class="text08" *ngIf="onActclieForm.get('contacto').touched && onActclieForm.get('email').hasError('contacto')">
+                <ion-text color="danger">
+                    Este campo es obligatorio
+                </ion-text>
+            </p>
         </form>
-        <ion-card-content no-padding>
-            <agm-map [latitude]="coords.lat" [longitude]="coords.lng" [zoom]="14" [zoomControl]="false" [styles]="agmStyles" [streetViewControl]="false">
-                <agm-marker [latitude]="coords.lat" [longitude]="coords.lng"></agm-marker>
-            </agm-map>
-        </ion-card-content>
-
-
-        <ion-button *ngIf="cargo_posicion" icon-left size="small" shape="round" color="tertiary" (click)="actualiza_ubicaciongps()">
-            Actualizar Ubicación
+        <ion-button *ngIf="cargo_posicion" icon-left size="small" shape="round" [disabled]="!onActclieForm.valid" color="tertiary" (click)="actualiza_ubicaciongps()">
+            Actualizar
             <ion-icon name="pin"></ion-icon>
         </ion-button>
     </ion-card>

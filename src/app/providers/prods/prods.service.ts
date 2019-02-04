@@ -15,6 +15,7 @@ import { Storage } from "@ionic/storage";
 import { VisitasProvider } from "../visitas/visitas.service";
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import messages from '../message/mock-messages';
+import { resolve } from "url";
 
 
 @Injectable({
@@ -216,6 +217,7 @@ export class ProdsService implements OnInit {
   
   //actualizar link imagen verifica si en firestorage imagenes producto existe y actualiza el lin
   actLinkimg(){
+    return new Promise((resolve, reject) => {
     for (let i = 0; i < this.inventario.length; i++) {  
       let lcodref = this.inventario[i].cod_refinv;
       let larchivo = '/imagenes/' + lcodref.trim() + '.jpg';
@@ -231,11 +233,14 @@ export class ProdsService implements OnInit {
           // console.log('En actLinkimg suscribe url:' + larchivo, url);        
       });
     }
+    resolve(true);
+  });
   }
 
   //actualizar link imagen verifica si en firestorage imagenes producto existe y actualiza el lin
   actLinkimgPed(){
-    for (let i = 0; i < this.inventarioPed.length; i++) {  
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < this.inventarioPed.length; i++) {  
       let lcodref = this.inventarioPed[i].cod_refinv;
       let larchivo = '/imagenes/' + lcodref.trim() + '.jpg';
       const ref = this.afStorage.ref(larchivo);
@@ -250,6 +255,8 @@ export class ProdsService implements OnInit {
           // console.log('En actLinkimg suscribe url:' + larchivo, url);        
       });
     }
+    resolve(true);
+  });
   }
 
 

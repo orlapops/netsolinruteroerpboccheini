@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
 
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 // import { Http } from '@angular/http';
 // import { map, filter, switchMap } from 'rxjs/operators';
@@ -40,6 +40,7 @@ export class ParEmpreService {
     private afDB: AngularFirestore,
     private platform: Platform,
     private storage: Storage,
+    private fbDb: AngularFirestore,
     // public http: Http
     private http: HttpClient
     // public http: Http
@@ -65,7 +66,49 @@ reg_log(titulo, mensaje){
   // .doc(id)
   // .set(inventario);
 }
-
+  // Carga ciudades definidas en Netsolin
+  cargaCiudadesNetsolin() {
+    return new Promise((resolve, reject) => {
+      console.log('ingreso a cargaCiudadesNetsolin');
+      NetsolinApp.objenvrest.filtro = '';
+      let url =this.URL_SERVICIOS +"netsolin_servirestgo.csvc?VRCod_obj=APPCIUDADES";
+      console.log('ingreso a cargaCiudadesNetsolin url', url, NetsolinApp.objenvrest);
+      this.http.post(url, NetsolinApp.objenvrest).subscribe((data: any) => {
+        console.log('ingreso a cargaCiudadesNetsolin data', data);
+        if (data.error) {
+          console.error(" cargaCiudadesNetsolin ", data.error);
+          resolve(false);
+        } else {
+          console.log('ingreso a cargaCiudadesNetsolin cargo ciudades');
+          this.guardarCiudadesFB(data) .then(resultado => {
+              if (resultado) {
+                resolve(true);
+              }
+          });
+        }
+      });
+    });
+  }
+ //guardar ciudades en firebase
+ public guardarCiudadesFB(data) {
+  return new Promise((resolve, reject) => {
+  console.log('guardarCiudadesFB:');
+  console.log(data);
+  let ciudadlist: AngularFirestoreCollection<any>;
+  ciudadlist = this.fbDb.collection(`ciudades/`);
+  data.ciudades.forEach((ciudad: any) => {
+    console.log('recorriendo ciudades :ciudad ', ciudad);
+    const idciudad   = ciudad.cod_ciudad;
+    console.log('recorriendo ciudades :idciudad ', idciudad);
+    const reg_ciudad = {
+      cod_ciudad: ciudad.cod_ciudad,
+      ciudad: ciudad.ciudad
+    };
+    ciudadlist.doc(idciudad).set(reg_ciudad);
+  });
+  resolve(true);
+});
+}  
 // Verifica usuario en url de empresa en Netsolin
 verificausuarioNetsolin(codigo: string,psw:string,plogeo:string ) {
   this.licenValida=false;

@@ -3,8 +3,8 @@ import { NavController, AlertController } from "@ionic/angular";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ClienteProvider } from "../../providers/cliente.service";
 import { VisitasProvider } from "../../providers/visitas/visitas.service";
-import { ProdsService } from '../../providers/prods/prods.service';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+import { ProdsService } from '../../providers/prods/prods.service';
 
 @Component({
   selector: "app-verpedido",
@@ -26,7 +26,7 @@ export class VerpedidoPage implements OnInit {
     public route: ActivatedRoute,
     public _cliente: ClienteProvider,
     public _visitas: VisitasProvider,
-    public _prods: ProdsService,    
+    public _prods: ProdsService,
     public router: Router
   ) {
     console.log('reVerpedido idact:', this.idact);

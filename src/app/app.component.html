@@ -3,7 +3,7 @@
         <ion-menu>
             <ion-header>
                 <ion-toolbar color="dark" class="user-profile">
-                    <ion-item margin-bottom>
+                    <ion-item margin-bottom class="ionitemmenu">
                         <!-- <ion-avatar slot="start" class="user-avatar"> -->
                         <ion-avatar slot="start">
                             <!-- <img src="assets/img/avatar.jpeg"> -->
@@ -29,7 +29,7 @@
                                 <ion-text color="secondary"> | </ion-text> -->
                                 <a class="text08" tappable (click)="logout()">
                                     <ion-text color="tertiary">
-                                        <ion-icon name="log-out"></ion-icon>
+                                        <ion-icon class="iconfill" name="log-out"></ion-icon>
                                         <strong>{{ 'app.pages.menu.logout' | translate }}</strong>
                                     </ion-text>
                                 </a>
@@ -41,10 +41,10 @@
             </ion-header>
 
             <ion-content class="bg-profile">
-                <ion-list>
+                <ion-list class="listmenu">
                     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
                         <ion-item [routerDirection]="[p.direct]" [routerLink]="[p.url]" color="primary">
-                            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                            <ion-icon class="iconfill" slot="start" [name]="p.icon"></ion-icon>
                             <ion-label>
                                 {{p.title}}
                             </ion-label>

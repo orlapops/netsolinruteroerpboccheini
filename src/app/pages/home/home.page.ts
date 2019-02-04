@@ -14,7 +14,6 @@ import { environment } from '../../../environments/environment';
 import { ParEmpreService } from '../../providers/par-empre.service';
 // import { VisitasProvider } from "../../providers/visitas/visitas.service";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { ModalNuevaVisitaPage } from '../modal/modal-nueva-visita/modal-nueva-visita.page';
 // import { VisitanService } from "../../providers/visitan.service";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -253,14 +252,12 @@ export class HomePage implements OnInit {
       });
   }
 
-  async nuevoRegistroVisita() {
-    const modal = await this.modalCtrl.create({
-      component: ModalNuevaVisitaPage,
-      // componentProps: { fromto: fromto, search: this.search }
-      componentProps: { coords: this.coords }
-    });
-    return await modal.present();
-  }
+  // async nuevoRegistroVisita() {
+  //   const modal = await this.modalCtrl.create({
+  //     componentProps: { coords: this.coords }
+  //   });
+  //   return await modal.present();
+  // }
 
   nuevoRegistroVisitssa() {
     // console.log("Mostrsr modal");

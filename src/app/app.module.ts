@@ -34,7 +34,6 @@ import { VisitasProvider } from './providers/visitas/visitas.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
-import { ModalNuevaVisitaPageModule } from './pages/modal/modal-nueva-visita/modal-nueva-visita.module';
 import { CarritoFacturaService } from './providers/carrito.factura.service';
 import { ClienteProvider } from './providers/cliente.service';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -63,7 +62,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     ImagePageModule,
     LocationPageModule,
-    ModalNuevaVisitaPageModule,
     ModalActClientePageModule,
     AngularFireModule,
     AngularFireModule.initializeApp(environment.firebase),

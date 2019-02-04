@@ -12,7 +12,33 @@ export const environment = {
     // scrollAssist: true,
     autoFocusAssist: false,
     menuType: 'overlay'
+
   },
+
+  firebase: {
+    //prueba en via tropical con proyecto catalogo
+            // apiKey: "AIzaSyDz_d6qIjTAN_-lU8neFAKQIbnmMkqpKoU",
+            // authDomain: "catalogo-43ff6.firebaseapp.com",
+            // databaseURL: "https://catalogo-43ff6.firebaseio.com",
+            // projectId: "catalogo-43ff6",
+            // storageBucket: "catalogo-43ff6.appspot.com",
+            // messagingSenderId: "254647114546"
+    //Si va a compilar para Javar estas son las credenciales
+            // apiKey: "AIzaSyBrXImX2qR-tVFzjBMziucfyHQU2Lwjuno",
+            // authDomain: "catalogojavar-e7ea1.firebaseapp.com",
+            // databaseURL: "https://catalogojavar-e7ea1.firebaseio.com",
+            // projectId: "catalogojavar-e7ea1",
+            // storageBucket: "catalogojavar-e7ea1.appspot.com",
+            // messagingSenderId: "492412631854"
+    //Boccherini
+     apiKey: "AIzaSyDn_a46aGh-s-enMAg-Pyr5CaS2M71VHx4",
+    authDomain: "netsolin-49ea4.firebaseapp.com",
+    databaseURL: "https://netsolin-49ea4.firebaseio.com",
+    projectId: "netsolin-49ea4",
+    storageBucket: "netsolin-49ea4.appspot.com",
+    messagingSenderId: "22671254985"        
+    
+        },
   // Set language to use.
   language: 'en',
   // Loading Configuration.
