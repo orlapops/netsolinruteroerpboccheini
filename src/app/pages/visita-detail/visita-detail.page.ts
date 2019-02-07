@@ -110,7 +110,7 @@ export class VisitaDetailPage implements OnInit {
       if (result){
         //Suscribirse a cliente actual fb
         this._cliente.getClienteFb(this.visita.data.cod_tercer).subscribe((datos: any) => {
-            // console.log('Suscribe a clientes fb ', datos);
+            console.log('Suscribe a clientes fb ', datos);
             this.clienteAct = datos;
             this.cargo_clienteact = true;
             //encontrar ubicacion actual en arreglo

@@ -117,8 +117,8 @@ export class ClienteProvider {
           // console.log(" cargaClienteNetsolin 2");
           this.http.post( url, NetsolinApp.objenvrest )   
            .subscribe( (data:any) =>{ 
-            // console.log(" cargaClienteNetsolin 3");
-            // console.log(data);  
+            console.log(" cargaClienteNetsolin 3");
+            console.log(data);  
             if( data.error){
                 // console.log(" cargaClienteNetsolin 31");
               // Aqui hay un problema

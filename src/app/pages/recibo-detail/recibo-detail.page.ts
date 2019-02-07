@@ -4,6 +4,7 @@ import { TranslateProvider } from "../../providers";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ClienteProvider } from "../../providers/cliente.service";
 import { RecibosService } from "../../providers/recibos/recibos.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: "app-recibo-detail",
@@ -26,6 +27,7 @@ export class ReciboDetailPage implements OnInit {
     public _recibo: RecibosService,
     public route: ActivatedRoute,
     public _cliente: ClienteProvider,
+    private sanitizer: DomSanitizer,
     public router: Router
   ) {
     _recibo.inicializaRecibos();
@@ -83,4 +85,7 @@ export class ReciboDetailPage implements OnInit {
       toast.present();
     });
   }
+    cleanURL(oldURL: string) {
+      return this.sanitizer.bypassSecurityTrustUrl(oldURL);
+    }
 }

@@ -77,9 +77,26 @@
                     Cliente: {{ _cliente.clienteActual.cliente }}
                 </ion-text>
             </h3>
-            <h3>
+            <h3 class="hdatobliga">
                 <ion-text>
-                    Obligación: {{ oblshop.num_obliga }} Fecha: {{ oblshop.fecha_obl | date }}
+                    <a [href]="cleanURL(oblshop.link_fact)" class="list-group-item active">
+                                Obligación: {{ oblshop.num_obliga }} {{ oblshop.cod_dfactu+'/'+oblshop.num_dfactu }} Fecha: {{ oblshop.fecha_obl | date }}
+                            </a>
+                </ion-text>
+            </h3>
+            <h3 class="hdatobliga">
+                <ion-text>
+                    Duchas: {{ oblshop.tot_duchas | currency }} Otros: {{ oblshop.tot_otros | currency }} Total: {{ oblshop.valor_neto | currency }}
+                </ion-text>
+            </h3>
+            <h3 class="hdatobliga">
+                <ion-text>
+                    +Iva: {{ oblshop.iva | currency }} -Retención: {{ oblshop.retencion+oblshop.ret_indyci | currency }} total: {{ oblshop.valor_neto +oblshop.iva - oblshop.retencion - oblshop.ret_indyci | currency }}
+                </ion-text>
+            </h3>
+            <h3 class="hdatobliga">
+                <ion-text color="danger">
+                    Descuentos hasta el: {{ oblshop.fec_limdesc | date}}
                 </ion-text>
             </h3>
         </ion-card-content>
