@@ -4,6 +4,19 @@
     }
 }
 
+.fontrowcol {
+    font-size: smaller;
+    font-weight: bold;
+    text-align: -webkit-right;
+    width: 68px;
+}
+
+.titrowcol {
+    font-size: smaller;
+    font-weight: bold;
+    text-align: -webkit-left;
+}
+
 .btcartera-color {
     color: #222428;
     background-color: #c5d9fa;
@@ -31,6 +44,14 @@
     padding: 6px;
     background-color: aliceblue;
     border: 1;
+}
+
+.listafpago {
+    margin-left: -18px;
+    margin-right: -18px;
+    margin-top: -24px;
+    margin-bottom: 0px;
+    padding-left: 0px;
 }
 
 .fechamsg {
@@ -69,7 +90,7 @@
 }
 
 .cardpago {
-    background-color: rgb(122, 134, 187);
+    background-color: #fed212;
 }
 
 .rowpago {
@@ -139,4 +160,9 @@
     width: -webkit-fill-available;
     height: 400px;
     background-color: ghostwhite;
+}
+
+.inputnumero {
+    text-align: -webkit-right;
+    background: whitesmoke;
 }

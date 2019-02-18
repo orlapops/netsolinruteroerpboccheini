@@ -35,6 +35,7 @@ export class ParEmpreService {
   item: Observable<Item>;
   URL_SERVICIOS: string ="";
   idreglog = 'depuracion1';
+  
 
   constructor(
     private afDB: AngularFirestore,
@@ -66,6 +67,51 @@ reg_log(titulo, mensaje){
   // .doc(id)
   // .set(inventario);
 }
+  // Carga bancos definidos en Netsolin
+  cargaBancosNetsolin() {
+    return new Promise((resolve, reject) => {
+      console.log('ingreso a cargaBancosNetsolin');
+      NetsolinApp.objenvrest.filtro = '';
+      let url =this.URL_SERVICIOS +"netsolin_servirestgo.csvc?VRCod_obj=APPBANCOS";
+      console.log('ingreso a cargaBancosNetsolin url', url, NetsolinApp.objenvrest);
+      this.http.post(url, NetsolinApp.objenvrest).subscribe((data: any) => {
+        console.log('ingreso a cargaBancosNetsolin data', data);
+        if (data.error) {
+          console.error(" cargaBancosNetsolin ", data.error);
+          resolve(false);
+        } else {
+          console.log('ingreso a cargaBancosNetsolin cargo bancos');
+          this.guardarBancosFB(data) .then(resultado => {
+              if (resultado) {
+                resolve(true);
+              }
+          });
+        }
+      });
+    });
+  }
+ //guardar bancos firebase
+ public guardarBancosFB(data) {
+  return new Promise((resolve, reject) => {
+  console.log('guardarBancosFB:');
+  console.log(data);
+  let bancolist: AngularFirestoreCollection<any>;
+  bancolist = this.fbDb.collection(`bancos/`);
+  data.bancos.forEach((banco: any) => {
+    console.log('recorriendo bancos : ', banco);
+    const idbanco   = banco.cod_banco;
+    console.log('recorriendo bancos :idciudad ', idbanco);
+    const reg_banco = {
+      cod_banco: banco.cod_banco,
+      banco: banco.banco
+    };
+    console.log('reg_banco a graba ren firebase', idbanco, reg_banco);
+    bancolist.doc(idbanco).set(reg_banco);
+  });
+  resolve(true);
+});
+}
+
   // Carga ciudades definidas en Netsolin
   cargaCiudadesNetsolin() {
     return new Promise((resolve, reject) => {
@@ -108,7 +154,15 @@ reg_log(titulo, mensaje){
   });
   resolve(true);
 });
-}  
+}
+
+  //Obtiene tipos actividades de FB
+  public getbancosFB() {
+    return this.fbDb
+      .collection("bancos")
+      .valueChanges();
+  }
+
 // Verifica usuario en url de empresa en Netsolin
 verificausuarioNetsolin(codigo: string,psw:string,plogeo:string ) {
   this.licenValida=false;
@@ -479,5 +533,16 @@ cadhoramil(nhora){
 
   return chh+':'+cmm+' '+campm;
 }
+
+
+diferenciaEntreDiasEnDias(a, b)
+{
+  const MILISENGUNDOS_POR_DIA = 1000 * 60 * 60 * 24;
+  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+  return Math.floor((utc2 - utc1) / MILISENGUNDOS_POR_DIA);
+}
+
 
 }

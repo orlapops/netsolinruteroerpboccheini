@@ -9,6 +9,11 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 @import "./theme/animate.css";
+.inputnumero {
+    text-align: -webkit-right;
+    background: whitesmoke;
+}
+
 //visitas
 .hrvisitaabierta {
     height: 3px;

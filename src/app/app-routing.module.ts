@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'visita-list/:textbus/:fini/:ffin', loadChildren: './pages/visita-list/visita-list.module#VisitaListPageModule' },
   { path: 'visita-detail/:id', loadChildren: './pages/visita-detail/visita-detail.module#VisitaDetailPageModule' },
   { path: 'regactividades/:id', loadChildren: './pages/regactividades/regactividades.module#RegActividadesPageModule' },
+  { path: 'regpagosxtipo/:id', loadChildren: './pages/regpagosxtipo/regpagosxtipo.module#RegPagosxtipoPageModule' },
   { path: 'prod-detail/:id', loadChildren: './pages/prod-detail/prod-detail.module#ProdDetailPageModule' },
   { path: 'prod-detail.ped/:id', loadChildren: './pages/prod-detail.ped/prod-detail.ped.module#ProdDetailPedPageModule' },
   { path: 'factura', loadChildren: './pages/factura/factura.module#FacturaPageModule' },

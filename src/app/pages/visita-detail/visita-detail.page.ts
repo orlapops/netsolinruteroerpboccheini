@@ -186,6 +186,7 @@ export class VisitaDetailPage implements OnInit {
     this._prods.cargar_storage_factura(this.visita.data.id_ruta, this.visita.id);
     this._prods.cargar_storage_pedido(this.visita.data.id_ruta, this.visita.id);
     this._recibos.cargar_storage_recibo(this.visita.data.id_ruta, this.visita.id);
+    this._recibos.cargar_storage_formpago(this.visita.data.id_ruta, this.visita.id);
   }
 
   obtenerPosicion(): any {

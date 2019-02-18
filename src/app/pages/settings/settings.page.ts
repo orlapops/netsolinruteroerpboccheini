@@ -47,6 +47,18 @@ export class SettingsPage implements OnInit {
       }
     });
   }
+  actbancos() {
+    console.log('A actualizar bancos de Netsolin a Firebase');
+    this.trabajando = true;
+    console.log('Inicio a trabajar bancos');
+    this._parEmpre.cargaBancosNetsolin().then(resultado => {
+      if (resultado) {
+        console.log('Termino de trabaja bancos');
+        this.trabajando = false;
+      }
+    });
+  }
+  
   //Actualizar imagenes productos factura
   actimagenesfactura() {
     //Actualizar link imagen solo para que actualice en Netsolin el link se comentarea cuando no
